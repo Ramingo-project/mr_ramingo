@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot name="mr_base_macro" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:include filename="$(find mr_description)/urdf/utility_macro.xacro" />
+  <xacro:include filename="$(find mr_ramingo)/urdf/utility_macro.xacro" />
  
 
   <!-- Base properties -->
