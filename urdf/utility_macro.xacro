@@ -23,6 +23,10 @@
     <color rgba="0.0 0.0 0.8 1.0"/>
   </material>
 
+  <material name="Green">
+    <color rgba="0.0 0.8 0.0 1.0"/>
+  </material>
+
   <xacro:macro name="cylinder_inertia" params="m r h">
     <inertia  ixx="${m*(3*r*r+h*h)/12}" ixy = "0" ixz = "0"
               iyy="${m*(3*r*r+h*h)/12}" iyz = "0"

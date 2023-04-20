@@ -29,7 +29,7 @@
         <geometry>
           <mesh filename="package://mr_ramingo/meshes/mr_body.stl" scale="0.001 0.001 0.001 "/>
         </geometry>
-        <material name="White"/>
+        <material name="Blue"/>
         <origin rpy="0 0 0" xyz="0 0 0"/>
       </visual>
       <collision>
@@ -51,7 +51,7 @@
         <geometry>
           <mesh filename="package://mr_ramingo/meshes/mr_wheel.stl" scale="0.001 0.001 0.001 "/>
         </geometry>
-        <material name="Black"/>
+        <material name="Green"/>
         <origin rpy="0 0 0" xyz="0 0 0"/>
       </visual>
       <collision> 
@@ -74,7 +74,7 @@
         <geometry>
           <mesh filename="package://mr_ramingo/meshes/mr_wheel.stl" scale="0.001 0.001 0.001 "/>
         </geometry>
-        <material name="Black"/>
+        <material name="Green"/>
         <origin rpy="0 0 0" xyz="0 0 0"/>
       </visual>
       <collision> 
