@@ -49,6 +49,7 @@
       <robotNamespace>/</robotNamespace>
       <publishTf>1</publishTf>
       <publishWheelJointState>false</publishWheelJointState>
+      <publishOdomTF>false</publishOdomTF>
       <alwaysOn>true</alwaysOn>
       <updateRate>100.0</updateRate>
       <leftJoint>left_wheel_joint</leftJoint>
@@ -59,8 +60,8 @@
       <wheelTorque>30</wheelTorque>
       <wheelAcceleration>1.8</wheelAcceleration>
       <commandTopic>cmd_vel</commandTopic>
-      <odometryFrame>odom</odometryFrame> 
-      <odometryTopic>odom</odometryTopic> 
+      <odometryFrame>mr_odom</odometryFrame> 
+      <odometryTopic>mr_odom</odometryTopic> 
       <robotBaseFrame>base_link</robotBaseFrame>
     </plugin>
   </gazebo> 

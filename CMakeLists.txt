@@ -139,6 +139,8 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/rl_fratomo_description_node.cpp)
 add_executable(topic_joystick src/joystick.cpp)
+add_executable(topic_odom src/mr_odom.cpp)
+
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -156,6 +158,7 @@ add_executable(topic_joystick src/joystick.cpp)
 # )
 
 target_link_libraries(topic_joystick ${catkin_LIBRARIES})
+target_link_libraries(topic_odom ${catkin_LIBRARIES})
 
 #############
 ## Install ##
