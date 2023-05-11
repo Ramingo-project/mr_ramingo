@@ -47,9 +47,9 @@
       <rosDebugLevel>Debug</rosDebugLevel>
       <publishWheelTF>false</publishWheelTF>
       <robotNamespace>/</robotNamespace>
-      <publishTf>1</publishTf>
+      <publishTf>0</publishTf>
       <publishWheelJointState>false</publishWheelJointState>
-      <publishOdomTF>false</publishOdomTF>
+      <!--publishOdomTF>false</publishOdomTF-->
       <alwaysOn>true</alwaysOn>
       <updateRate>100.0</updateRate>
       <leftJoint>left_wheel_joint</leftJoint>
@@ -60,8 +60,8 @@
       <wheelTorque>30</wheelTorque>
       <wheelAcceleration>1.8</wheelAcceleration>
       <commandTopic>cmd_vel</commandTopic>
-      <odometryFrame>mr_odom</odometryFrame> 
-      <odometryTopic>mr_odom</odometryTopic> 
+      <odometryFrame>odom</odometryFrame> 
+      <odometryTopic>odom</odometryTopic> 
       <robotBaseFrame>base_link</robotBaseFrame>
     </plugin>
   </gazebo> 
