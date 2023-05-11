@@ -52,21 +52,20 @@ void ROS_SUB::odometry(){
     double y = 0.0;
     double th = 0.0;
   
-    double vx = 0.1;
-    double vy = 0.0;
-    double vth = 0.1;
+    double vx = 0.0;
+    double vth = 0.0;
    
-    ros::Rate r(100);
+    ros::Rate r(1000);
     while(ros::ok()){
    
-		ros::spinOnce();               // check for incoming messages
+		//ros::spinOnce();               // check for incoming messages
 		vx = _cmd_vel.linear.x;
 		vth = _cmd_vel.angular.z;
 		
 		//compute odometry in a typical way given the velocities of the robot
-		x += (vx * cos(th))*0.01;
-		y += (vx * sin(th))*0.01;
-		th += vth *0.01;		
+		x += (vx * cos(th))*0.001;
+		y += (vx * sin(th))*0.001;
+		th += vth *0.001;		
 	
 		//first, we'll publish the transform over tf
 		transform.setOrigin(tf::Vector3(x, y, 0.0));
