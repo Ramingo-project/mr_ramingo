@@ -77,19 +77,22 @@ void ROS_SUB::odometry(){
 	
 		//next, we'll publish the odometry message over ROS
 		/*nav_msgs::Odometry odom;
-		odom.header.stamp = current_time;
+		odom.header.stamp = ros::Time::now();
 		odom.header.frame_id = "mr_odom";
 	
 		//set the position
 		odom.pose.pose.position.x = x;
 		odom.pose.pose.position.y = y;
 		odom.pose.pose.position.z = 0.0;
-		odom.pose.pose.orientation = q;
+		odom.pose.pose.orientation.x = transform.getRotation().x();
+		odom.pose.pose.orientation.y = transform.getRotation().y();
+		odom.pose.pose.orientation.z = transform.getRotation().z();
+		odom.pose.pose.orientation.w = transform.getRotation().w();
 	
 		//set the velocity
 		odom.child_frame_id = "base_link";
 		odom.twist.twist.linear.x = vx;
-		odom.twist.twist.linear.y = vy;
+		odom.twist.twist.linear.y = 0.0;
 		odom.twist.twist.angular.z = vth;
 	
 		//publish the message
