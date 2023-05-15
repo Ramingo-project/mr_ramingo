@@ -28,7 +28,7 @@ ROS_SUB::ROS_SUB() {
 	//			Callback function
 	//			Object context: the value of data members
 	joystick_sub = _nh.subscribe("/joy", 1, &ROS_SUB::topic_cb, this);
-	joystick_pub = _nh.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
+	joystick_pub = _nh.advertise<geometry_msgs::Twist>("/mr_ramingo/cmd_vel", 10);
 
 }
 

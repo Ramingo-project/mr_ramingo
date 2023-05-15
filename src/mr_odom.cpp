@@ -31,7 +31,7 @@ ROS_SUB::ROS_SUB() {
 	//			queue:	1
 	//			Callback function
 	//			Object context: the value of data members
-	cmd_vel_sub = _nh.subscribe("/cmd_vel", 1, &ROS_SUB::topic_cb, this);
+	cmd_vel_sub = _nh.subscribe("dynamixel_workbench/cmd_vel", 1, &ROS_SUB::topic_cb, this);
 	odom_pub = _nh.advertise<nav_msgs::Odometry>("/mr_odom", 50);
 	boost::thread loop_t(&ROS_SUB::odometry, this);  //thread for the filter
 }
@@ -73,7 +73,7 @@ void ROS_SUB::odometry(){
 		transform.setRotation(q);
 
 		//send the transform
-		odom_broadcaster.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "mr_odom", "base_link"));
+		odom_broadcaster.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "mr_odom", "base_footprint"));
 	
 		//next, we'll publish the odometry message over ROS
 		/*nav_msgs::Odometry odom;
