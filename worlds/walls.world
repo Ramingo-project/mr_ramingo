@@ -39,8 +39,8 @@
 
   <include>
       <name>marker</name>
-      <pose>2 0 2 0 1.57 3.14</pose>
-      <uri>model://marker26_8cm</uri>
+      <pose>2 0 2 0 1.57 0</pose>
+      <uri>model://marker9_10cm</uri>
     </include>
 
 <!--
