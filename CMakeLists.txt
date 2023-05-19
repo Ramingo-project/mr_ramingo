@@ -9,6 +9,9 @@ project(mr_ramingo)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
+  gazebo_plugins
+  gazebo_ros
+  sensor_msgs
   roscpp
   rospy
   rviz
