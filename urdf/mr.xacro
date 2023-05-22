@@ -3,11 +3,12 @@
 <robot name="mobile_robot" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find mr_ramingo)/urdf/mr_base_macro.xacro" /> 
   <xacro:include filename="$(find mr_ramingo)/urdf/camera.xacro" /> 
+  
 
 
   <xacro:property name="LIDAR" value="True"/>
 
-	<link name="sensor_link">
+	<link name="camera_link">
 		<!--
     <collision>
       <origin xyz="0 0 0.05" rpy="0 0 0"/>
@@ -17,9 +18,9 @@
     </collision>
 		-->
     <visual>
-      <origin xyz="0 0 0.05" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <box size="0.1 0.1 0.1"/>
+        <box size="0.01 0.02 0.02"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -35,10 +36,27 @@
 		-->
   </link>
 
-	<joint name="sensor_joint" type="fixed">
+	<joint name="camera_joint" type="fixed">
 		<parent link="base_link" />
-		<child link="sensor_link" />
-		<origin xyz="0.0 0.0 0.1" rpy="0 0 0"/>
+		<child link="camera_link" />
+		<origin xyz="0.11 0.0 0.0" rpy="0 0 0"/>
+	</joint>
+
+
+	<link name="laser">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+      <material name="yellow"/>
+    </visual>
+  </link>
+
+	<joint name="laser_joint" type="fixed">
+		<parent link="base_link" />
+		<child link="laser" />
+		<origin xyz="0.0 0.0 0.15" rpy="0 0 0"/>
 	</joint>
 
   <!-- Differential drive controller  -->
@@ -50,7 +68,6 @@
       <robotNamespace>/</robotNamespace>
       <publishTf>0</publishTf>
       <publishWheelJointState>false</publishWheelJointState>
-      <!--publishOdomTF>false</publishOdomTF-->
       <alwaysOn>true</alwaysOn>
       <updateRate>100.0</updateRate>
       <leftJoint>left_wheel_joint</leftJoint>
