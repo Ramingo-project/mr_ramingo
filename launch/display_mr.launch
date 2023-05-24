@@ -21,7 +21,7 @@
   <arg name="use_joint_state"         default="true"/>
   <arg name="use_cmd_vel"             default="true"/>
 
-  <param name="dynamixel_info"          value="$(find mr_ramingo)/conf/wheel_1_0.yaml"/>
+  <param name="dynamixel_info"          value="$(find mr_ramingo)/param/wheel_1_0.yaml"/>
 
 <!--Define debug-->
   <arg name="debug" default="false" />

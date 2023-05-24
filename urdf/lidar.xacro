@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot name="lidar_gazebo_macro" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!--xacro:include filename="$(find mr_ramingo)/urdf/utility_macro.xacro" /-->
+  
+  <xacro:macro name="lidar"> 
+    <link name="laser">
+      <inertial>
+          <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        <mass value="0.1" />
+        <origin xyz="0 0 0" />
+        <cylinder_inertia  m="0.1" r="0.037" h="0.04" />
+      </inertial>    
+      <visual> 
+        <geometry>
+          <mesh filename="package://mr_ramingo/meshes/lidar.stl" scale="0.001 0.001 0.001 "/>
+        </geometry>
+        <material name="White"/>
+        <origin rpy="0 0 ${-M_PI_2}" xyz="0.0 0.0 -0.031"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0 " />
+        <geometry>
+          <cylinder length="0.04" radius="0.037" />
+        </geometry>
+        <origin rpy="0 0 0" xyz="0.0 0.0 -0.031"/>
+      </collision> 
+         
+    </link>
+
+    <joint name="laser_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="laser"/>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.151"/>
+    </joint>
+
+  </xacro:macro>
+</robot>
+
