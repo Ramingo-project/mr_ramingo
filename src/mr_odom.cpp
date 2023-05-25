@@ -18,7 +18,7 @@ class ROS_SUB {
 		
 	private:
 		ros::NodeHandle _nh;
-		//Subscriber object
+		//Subscriber - Publisher object
 		ros::Subscriber cmd_vel_sub;
 		ros::Publisher odom_pub;
 		geometry_msgs::Twist _cmd_vel;
@@ -26,14 +26,10 @@ class ROS_SUB {
 };
 
 ROS_SUB::ROS_SUB() {
-	//Initialize a subscriber:
-	//	Input: 	topic name: /numbers
-	//			queue:	1
-	//			Callback function
-	//			Object context: the value of data members
+	//Initialize a subscriber and a publisher
 	cmd_vel_sub = _nh.subscribe("dynamixel_workbench/cmd_vel", 1, &ROS_SUB::topic_cb, this);
 	odom_pub = _nh.advertise<nav_msgs::Odometry>("/mr_odom", 50);
-	boost::thread loop_t(&ROS_SUB::odometry, this);  //thread for the filter
+	boost::thread loop_t(&ROS_SUB::odometry, this);  //thread for odometry
 }
 
 void ROS_SUB::topic_cb( geometry_msgs::Twist cmd_vel) {

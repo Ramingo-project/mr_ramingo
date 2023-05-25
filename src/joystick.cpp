@@ -22,11 +22,7 @@ class ROS_SUB {
 };
 
 ROS_SUB::ROS_SUB() {
-	//Initialize a subscriber:
-	//	Input: 	topic name: /numbers
-	//			queue:	1
-	//			Callback function
-	//			Object context: the value of data members
+	//Initialize a subscriber and a publisher
 	joystick_sub = _nh.subscribe("/joy", 1, &ROS_SUB::topic_cb, this);
 	joystick_pub = _nh.advertise<geometry_msgs::Twist>("/mr_ramingo/cmd_vel", 10);
 
