@@ -6,7 +6,7 @@
 #include "boost/thread.hpp"
 #include <tf/transform_broadcaster.h>
 #include <nav_msgs/Odometry.h>
-#define r_wheel 0.033 
+
 
 using namespace std;
 

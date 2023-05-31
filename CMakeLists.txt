@@ -19,6 +19,8 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   urdf
   xacro
+  move_base_msgs
+  actionlib
 )
 
 ## System dependencies are found with CMake's conventions
@@ -143,7 +145,7 @@ include_directories(
 # add_executable(${PROJECT_NAME}_node src/rl_fratomo_description_node.cpp)
 add_executable(topic_joystick src/joystick.cpp)
 add_executable(topic_odom src/mr_odom.cpp)
-
+add_executable(topic_goal src/mr_goal_pos.cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -161,7 +163,7 @@ add_executable(topic_odom src/mr_odom.cpp)
 
 target_link_libraries(topic_joystick ${catkin_LIBRARIES})
 target_link_libraries(topic_odom ${catkin_LIBRARIES})
-
+target_link_libraries(topic_goal ${catkin_LIBRARIES})
 #############
 ## Install ##
 #############
