@@ -9,6 +9,7 @@
     <rosparam file="$(find mr_ramingo)/param/global_costmap_params.yaml" command="load" />
     <rosparam file="$(find mr_ramingo)/param/dwa_local_planner_params.yaml" command="load" />
     <rosparam file="$(find mr_ramingo)/param/move_base_params.yaml" command="load" />
+    <remap from="/cmd_vel" to="/dynamixel_workbench/cmd_vel" />
 
   </node>
 </launch>
