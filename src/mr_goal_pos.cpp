@@ -2,7 +2,7 @@
 #include "std_msgs/Int32.h"
 #include "std_msgs/Float32.h"
 #include "boost/thread.hpp"
-#include <tf/transform_broadcaster.h>
+#include <tf/transform_listener.h>
 #include <actionlib/client/simple_action_client.h>
 #include <move_base_msgs/MoveBaseAction.h>
 
@@ -22,12 +22,31 @@ int main( int argc, char** argv ) {
     }
 
     move_base_msgs::MoveBaseGoal goal;
+    tf::TransformListener listener;
+    tf::StampedTransform transform;
+    float k=0.3;
+    while(!listener.waitForTransform("base_link", "aruco_marker_frame", ros::Time(0), ros::Duration(1.0))){
+        goal.target_pose.header.frame_id = "base_link";
+        goal.target_pose.header.stamp = ros::Time::now();
+        goal.target_pose.pose.position.x = 1*k;
+        goal.target_pose.pose.position.y = ((rand()%3)-1)*k;
+        goal.target_pose.pose.position.z = 0.0;
+        goal.target_pose.pose.orientation.w = 1.0;
+        ac.sendGoal(goal);
+    }
+    usleep(2000);
+    listener.lookupTransform("base_link", "aruco_marker_frame", ros::Time(0), transform);
 
     //we'll send a goal to the robot to move 1 meter forward
-    goal.target_pose.header.frame_id = "map";
+    goal.target_pose.header.frame_id = "base_link";
     goal.target_pose.header.stamp = ros::Time::now();
 
-    goal.target_pose.pose.position.x = 1.0;
+    goal.target_pose.pose.position.x = transform.getOrigin().x()-0.3;
+    goal.target_pose.pose.position.y = transform.getOrigin().y()-0.3;
+    goal.target_pose.pose.position.z = 0.0;
+    goal.target_pose.pose.orientation.x = 0.0;
+    goal.target_pose.pose.orientation.y = 0.0;
+    goal.target_pose.pose.orientation.z = transform.getRotation().z();
     goal.target_pose.pose.orientation.w = 1.0;
 
     ROS_INFO("Sending goal");

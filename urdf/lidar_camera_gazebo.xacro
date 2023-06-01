@@ -4,7 +4,7 @@
 <robot name="sensor" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:property name="LIDAR" value="True"/>
-  <xacro:property name="CAMERA" value="True"/>
+  <xacro:property name="CAMERA" value="False"/>
 
   <!--TF LiDAR real -->
 	<link name="laser">
