@@ -3,8 +3,8 @@
 <robot name="mobile_robot" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find mr_ramingo)/urdf/mr_base_macro.xacro" /> 
   <xacro:include filename="$(find mr_ramingo)/urdf/lidar_camera_gazebo.xacro" /> 
-  <!--xacro:include filename="$(find mr_ramingo)/urdf/lidar.xacro"/-->
-  <xacro:include filename="$(find mr_ramingo)/urdf/camera.xacro"/>
+  <xacro:include filename="$(find mr_ramingo)/urdf/lidar.xacro"/>
+  <!--xacro:include filename="$(find mr_ramingo)/urdf/camera.xacro"/-->
 
   <!-- Differential drive controller  -->
   <gazebo>
