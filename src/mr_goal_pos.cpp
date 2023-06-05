@@ -25,29 +25,33 @@ int main( int argc, char** argv ) {
     tf::TransformListener listener;
     tf::StampedTransform transform;
     float k=0.3;
-    while(!listener.waitForTransform("base_link", "aruco_marker_frame", ros::Time(0), ros::Duration(3.0))){
-        goal.target_pose.header.frame_id = "base_link";
-        goal.target_pose.header.stamp = ros::Time::now();
-        goal.target_pose.pose.position.x = 1*k;
-        goal.target_pose.pose.position.y = ((rand()%3)-1)*k;
-        goal.target_pose.pose.position.z = 0.0;
-        goal.target_pose.pose.orientation.w = 1.0;
-        ac.sendGoal(goal);
-    }
-    usleep(2000);
-    listener.lookupTransform("base_link", "aruco_marker_frame", ros::Time(0), transform);
+    bool detected = false;
+    while(!detected){
+        if(listener.waitForTransform("base_link", "aruco_marker_frame", ros::Time(0), ros::Duration(3.0))){
+            goal.target_pose.header.frame_id = "base_link";
+            goal.target_pose.header.stamp = ros::Time::now();
+            goal.target_pose.pose.position.x = 1*k;
+            goal.target_pose.pose.position.y = ((rand()%3)-1)*k/3;
+            goal.target_pose.pose.position.z = 0.0;
+            goal.target_pose.pose.orientation.w = 1.0;
+            ac.sendGoal(goal);
+        }
+        else{
+            usleep(2000);
+            listener.lookupTransform("base_link", "aruco_marker_frame", ros::Time(0), transform);
+            goal.target_pose.header.frame_id = "base_link";
+            goal.target_pose.header.stamp = ros::Time::now();
 
-    //we'll send a goal to the robot to move 1 meter forward
-    goal.target_pose.header.frame_id = "base_link";
-    goal.target_pose.header.stamp = ros::Time::now();
-
-    goal.target_pose.pose.position.x = transform.getOrigin().x()-0.3;
-    goal.target_pose.pose.position.y = transform.getOrigin().y()-0.3;
-    goal.target_pose.pose.position.z = 0.0;
-    goal.target_pose.pose.orientation.x = 0.0;
-    goal.target_pose.pose.orientation.y = 0.0;
-    goal.target_pose.pose.orientation.z = transform.getRotation().z();
-    goal.target_pose.pose.orientation.w = 1.0;
+            goal.target_pose.pose.position.x = transform.getOrigin().x()-0.3;
+            goal.target_pose.pose.position.y = transform.getOrigin().y()-0.3;
+            goal.target_pose.pose.position.z = 0.0;
+            goal.target_pose.pose.orientation.x = 0.0;
+            goal.target_pose.pose.orientation.y = 0.0;
+            goal.target_pose.pose.orientation.z = transform.getRotation().z();
+            goal.target_pose.pose.orientation.w = 1.0;
+            detected =true;
+        }
+    }  
 
     ROS_INFO("Sending goal");
     ac.sendGoal(goal);
@@ -55,9 +59,9 @@ int main( int argc, char** argv ) {
     ac.waitForResult();
 
     if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
-        ROS_INFO("Hooray, the base moved 1 meter forward");
+        ROS_INFO("Ramingo, arrived in marker position");
     else
-        ROS_INFO("The base failed to move forward 1 meter for some reason");
+        ROS_INFO("The base failed to move");
 
     return 0;
 }
