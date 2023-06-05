@@ -9,4 +9,17 @@
 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find mr_ramingo)/conf/mr_conf.rviz" required="true" />
   	<node name="node_odom" type="topic_odom" pkg="mr_ramingo" />
 
+	<arg name="real" default="true" />
+ 	<arg name="unless_debug" default="$(arg real)" />
+
+	<group if="$(arg real)"> 
+		<include file="$(find mr_ramingo)/launch/usb_cam_mr.launch"/>
+		<include file="$(find mr_ramingo)/launch/dynamixel_mr.launch"/>
+		<include file="$(find mr_ramingo)/launch/marker_mr.launch"/>
+		<include file="$(find mr_ramingo)/launch/lidar_mr.launch"/>
+		<include file="$(find mr_ramingo)/launch/gmapping.launch"/>
+		<include file="$(find mr_ramingo)/launch/move_base_ramingo.launch"/>
+	</group>
+	
+
 </launch>
