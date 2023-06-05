@@ -1,8 +1,14 @@
 <?xml version="1.0"?>
 
 <robot name="mobile_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!--Set False if in real mode-->
+  <xacro:arg name="MR_GAZEBO" default="True"/>
+
   <xacro:include filename="$(find mr_ramingo)/urdf/mr_base_macro.xacro" /> 
-  <!--xacro:include filename="$(find mr_ramingo)/urdf/lidar_camera_gazebo.xacro" /--> 
+  <xacro:if value="$(arg MR_GAZEBO)" > 
+    <xacro:include filename="$(find mr_ramingo)/urdf/lidar_camera_gazebo.xacro" /> 
+  </xacro:if>
   <xacro:include filename="$(find mr_ramingo)/urdf/lidar.xacro"/>
   <xacro:include filename="$(find mr_ramingo)/urdf/camera.xacro"/>
 

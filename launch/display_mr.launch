@@ -2,24 +2,42 @@
 
 <launch>
 	<arg name="model" />						
+
+	<arg name="real" default="true" />
+ 	<arg name="unless_debug" default="$(arg real)" />
+
+
+	<group if="$(arg real)"> 
+		<include file="$(find mr_ramingo)/launch/usb_cam_mr.launch"/>
+		<include file="$(find mr_ramingo)/launch/dynamixel_mr.launch"/>
+		<include file="$(find mr_ramingo)/launch/marker_mr.launch">
+			<arg name="eye" value="usb_cam" />
+			<arg name="camera_frame" value="camera_link" />
+		</include>
+		<include file="$(find mr_ramingo)/launch/lidar_mr.launch"/>
+		<include file="$(find mr_ramingo)/launch/gmapping.launch">
+			<arg name="scan_topic" value="/scan" />
+		</include>
+		<include file="$(find mr_ramingo)/launch/move_base_ramingo.launch"/>
+	</group>
+	<group if="$(eval arg ('real') == 0)"> 
+		<include file="$(find mr_ramingo)/launch/spawn_mr_ramingo.launch"/>
+		<include file="$(find mr_ramingo)/launch/marker_mr.launch" >
+			<arg name="eye" value="camera" />
+			<arg name="camera_frame" value="camera" />
+		</include>
+		<include file="$(find mr_ramingo)/launch/gmapping.launch">
+			<arg name="scan_topic" value="/laser/scan" />
+		</include>
+		<include file="$(find mr_ramingo)/launch/move_base_ramingo.launch"/>
+	</group>
+
 	<param name="robot_description" command="$(find xacro)/xacro $(find mr_ramingo)/urdf/mr.xacro" />
 
 	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 	<node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />	
 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find mr_ramingo)/conf/mr_conf.rviz" required="true" />
   	<node name="node_odom" type="topic_odom" pkg="mr_ramingo" />
-
-	<arg name="real" default="true" />
- 	<arg name="unless_debug" default="$(arg real)" />
-
-	<group if="$(arg real)"> 
-		<include file="$(find mr_ramingo)/launch/usb_cam_mr.launch"/>
-		<include file="$(find mr_ramingo)/launch/dynamixel_mr.launch"/>
-		<include file="$(find mr_ramingo)/launch/marker_mr.launch"/>
-		<include file="$(find mr_ramingo)/launch/lidar_mr.launch"/>
-		<include file="$(find mr_ramingo)/launch/gmapping.launch"/>
-		<include file="$(find mr_ramingo)/launch/move_base_ramingo.launch"/>
-	</group>
 	
 
 </launch>

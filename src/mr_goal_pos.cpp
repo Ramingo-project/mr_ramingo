@@ -25,7 +25,7 @@ int main( int argc, char** argv ) {
     tf::TransformListener listener;
     tf::StampedTransform transform;
     float k=0.3;
-    while(!listener.waitForTransform("base_link", "aruco_marker_frame", ros::Time(0), ros::Duration(1.0))){
+    while(!listener.waitForTransform("base_link", "aruco_marker_frame", ros::Time(0), ros::Duration(3.0))){
         goal.target_pose.header.frame_id = "base_link";
         goal.target_pose.header.stamp = ros::Time::now();
         goal.target_pose.pose.position.x = 1*k;

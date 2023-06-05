@@ -17,7 +17,7 @@
       <geometry>
         <box size="0.01 0.02 0.02"/>
       </geometry>
-      <material name="orange"/>
+      <material name="Red"/>
     </visual>
 		<!--
     <inertial>
@@ -51,7 +51,7 @@
       <geometry>
         <box size="0.01 0.02 0.02"/>
       </geometry>
-      <material name="orange"/>
+      <material name="Red"/>
     </visual>
 		<!--
     <inertial>
