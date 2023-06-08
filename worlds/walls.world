@@ -39,9 +39,20 @@
 
   <include>
       <name>marker</name>
-      <pose>2 0 2 0 1.57 0</pose>
+      <pose>3 0.3 2 0 1.57 0</pose>
       <uri>model://marker9_10cm</uri>
     </include>
+
+  <!--include>
+    <light>
+      <type>point</type>
+      <diffuseColor>0.8 0.8 0.8</diffuseColor>
+      <specularColor>0.4 0.4 0.4</specularColor>
+      <attenuation>0.2 0.1 0</attenuation>
+      <range>2</range>
+    </light>
+  </include-->
+  
 
 <!--
     <include>
