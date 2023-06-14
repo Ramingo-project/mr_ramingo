@@ -27,6 +27,17 @@ int main( int argc, char** argv ) {
     float k=0.3;
     bool detected = false;
     while(!detected){
+
+        goal.target_pose.header.frame_id = "base_link";
+        goal.target_pose.header.stamp = ros::Time::now();
+        goal.target_pose.header.frame_id = "base_link";
+        goal.target_pose.header.stamp = ros::Time::now();
+        goal.target_pose.pose.position.x = 1*k;
+        goal.target_pose.pose.position.y = ((rand()%3)-1)*k/2;
+        goal.target_pose.pose.position.z = 0.0;
+        goal.target_pose.pose.orientation.w = 1.0;
+        ac.sendGoal(goal);
+
         try{
             listener.waitForTransform("base_link", "aruco_marker_frame", ros::Time(0), ros::Duration(1.0));
             listener.lookupTransform("base_link", "aruco_marker_frame", ros::Time(0), transform);
@@ -39,21 +50,10 @@ int main( int argc, char** argv ) {
             goal.target_pose.pose.orientation.w = 1.0;
             ac.sendGoal(goal);
             detected =true;
-
         }
         catch(tf::TransformException ex){
             ROS_ERROR("%s",ex.what());
 		    ros::Duration(0.2).sleep();
-            goal.target_pose.header.frame_id = "base_link";
-            goal.target_pose.header.stamp = ros::Time::now();
-            goal.target_pose.header.frame_id = "base_link";
-            goal.target_pose.header.stamp = ros::Time::now();
-            goal.target_pose.pose.position.x = 1*k;
-            goal.target_pose.pose.position.y = ((rand()%3)-1)*k/2;
-            goal.target_pose.pose.position.z = 0.0;
-            goal.target_pose.pose.orientation.w = 1.0;
-            ac.sendGoal(goal);
-            detected =false;
         }
     }  
 
