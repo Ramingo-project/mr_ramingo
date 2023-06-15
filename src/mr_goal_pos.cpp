@@ -4,18 +4,16 @@
 #include <move_base_msgs/MoveBaseAction.h>
 
 using namespace std;
+
+//Declaring a new SimpleActionClient with action of
+move_base_msgs::MoveBaseAction
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
 int main( int argc, char** argv ) {
+
     ros::init(argc, argv, "move_base_client");
 
-    move_base_msgs::MoveBaseGoal goal;
-    tf::TransformListener listener;
-    tf::StampedTransform transform;
-    float k = 0.3;
-    bool detected = false;
-
-    //tell the action client that we want to spin a thread by default
+    //Initiating move_base client
     MoveBaseClient ac("move_base", true);
 
     //wait for the action server to come up
@@ -23,10 +21,21 @@ int main( int argc, char** argv ) {
         ROS_INFO("Waiting for the move_base action server to come up");
     }
 
+    //Declaring move base goal
+    move_base_msgs::MoveBaseGoal goal;
+
+    tf::TransformListener listener;
+    tf::StampedTransform transform;
+    float k = 0.3;
+    bool detected = false;
+
+
     while(!detected){
 
+        // Setting target frame id and time in the goal action
         goal.target_pose.header.frame_id = "base_link";
         goal.target_pose.header.stamp = ros::Time::now();
+        //If the marker isn't detected do random movements along x and y axes
         goal.target_pose.pose.position.x = 1*k;
         goal.target_pose.pose.position.y = ((rand()%3)-1)*k/2;
         goal.target_pose.pose.position.z = 0.0;
