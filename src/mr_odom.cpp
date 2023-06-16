@@ -22,6 +22,7 @@ class ROS_SUB {
 		ros::Subscriber cmd_vel_sub;
 		ros::Publisher odom_pub;
 		geometry_msgs::Twist _cmd_vel;
+		float Ts = 0.01;
 
 };
 
@@ -43,7 +44,8 @@ void ROS_SUB::odometry(){
     tf::TransformBroadcaster odom_broadcaster;
 	tf::Transform transform;
 	tf::Quaternion q;
-   
+	
+
     double x = 0.0;
     double y = 0.0;
     double th = 0.0;
@@ -51,21 +53,21 @@ void ROS_SUB::odometry(){
     double vx = 0.0;
     double vth = 0.0;
    
-    ros::Rate r(1000);
+    ros::Rate r(1/Ts);
     while(ros::ok()){
    
 		//ros::spinOnce();               // check for incoming messages
 		vx = _cmd_vel.linear.x;
 		vth = _cmd_vel.angular.z;
 		
-		//compute odometry in a typical way given the velocities of the robot
-		x += (vx * cos(th))*0.001;
-		y += (vx * sin(th))*0.001;
-		th += vth *0.001;		
+		//compute odometry in a typical way given the velocities of the robot RUNGE KUTTA
+		x += (vx * cos(th + vth*Ts/2 ))*Ts;
+		y += (vx * sin(th + vth*Ts/2))*Ts;
+		th += vth *Ts;		
 	
 		//first, we'll publish the transform over tf
 		transform.setOrigin(tf::Vector3(x, y, 0.0));
-        q.setRPY(0, 0, th);
+        q.setRPY(0.0, 0.0, th);
 		transform.setRotation(q);
 
 		//send the transform
