@@ -10,27 +10,37 @@
 
 	<group if="$(arg real)"> 
 		<include file="$(find mr_ramingo)/launch/usb_cam_mr.launch"/>
+
 		<include file="$(find mr_ramingo)/launch/dynamixel_mr.launch"/>
+
 		<include file="$(find mr_ramingo)/launch/marker_mr.launch">
 			<arg name="eye" value="usb_cam" />
 			<arg name="camera_frame" value="camera_link" />
 		</include>
+
 		<include file="$(find mr_ramingo)/launch/lidar_mr.launch"/>
+
 		<include file="$(find mr_ramingo)/launch/gmapping.launch">
 			<arg name="scan_topic" value="/scan" />
 		</include>
+
 		<include file="$(find mr_ramingo)/launch/move_base_ramingo.launch"/>
 	</group>
+
+
 	<group if="$(eval arg ('real') == 0)"> 
 		<param name="Gazebo" value="True" />
 		<include file="$(find mr_ramingo)/launch/spawn_mr_ramingo.launch"/>
+
 		<include file="$(find mr_ramingo)/launch/marker_mr.launch" >
 			<arg name="eye" value="camera" />
-			<arg name="camera_frame" value="camera" />
+			<arg name="camera_frame" value="gazebo_aruco_camera_link" />
 		</include>
+
 		<include file="$(find mr_ramingo)/launch/gmapping.launch">
 			<arg name="scan_topic" value="/laser/scan" />
 		</include>
+
 		<include file="$(find mr_ramingo)/launch/move_base_ramingo.launch"/>
 	</group>
 

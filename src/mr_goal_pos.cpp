@@ -60,6 +60,10 @@ int main( int argc, char** argv ) {
             goal.target_pose.pose.orientation.y = 0.0;
             goal.target_pose.pose.orientation.z = 0.0;
             goal.target_pose.pose.orientation.w = 1.0;
+            /*while(1){
+                br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "base_link", "aruco_marker_frame_fix"));
+            }*/
+            
             ROS_INFO("Marker detected!");
             ros::Duration(3.0);
             detected = true;
@@ -80,25 +84,26 @@ int main( int argc, char** argv ) {
     listener.lookupTransform("base_link", "aruco_marker_frame", ros::Time(0), transform);
 
 
-    tf.setOrigin( tf::Vector3(0,0,transform.getOrigin().z()) );
+    tf.setOrigin( tf::Vector3(0,0,0) );
     tf::Quaternion q;
     q.setRPY(3.14,1.57,0);
     tf.setRotation(q);
 
     br.sendTransform(tf::StampedTransform(tf, ros::Time::now(), "aruco_marker_frame", "goal_frame"));
+    
 
     // Retreive the marker position again and set the right goal position 
-    listener.waitForTransform("base_link", "goal_frame", ros::Time(0), ros::Duration(1.0));
+    listener.waitForTransform("base_link", "goal_frame", ros::Time(0), ros::Duration(2.0));
     listener.lookupTransform("base_link", "goal_frame", ros::Time(0), transform);
 
 
-    goal.target_pose.pose.position.x = transform.getOrigin().x() - 0.2;
-    goal.target_pose.pose.position.y = transform.getOrigin().y() - 0.2;
+    goal.target_pose.pose.position.x = transform.getOrigin().x() ;
+    goal.target_pose.pose.position.y = transform.getOrigin().y() ;
     goal.target_pose.pose.position.z = 0.0;
-    goal.target_pose.pose.orientation.x = transform.getRotation().x();
-    goal.target_pose.pose.orientation.y = transform.getRotation().y();
-    goal.target_pose.pose.orientation.z = transform.getRotation().z();
-    goal.target_pose.pose.orientation.w = transform.getRotation().w();
+    goal.target_pose.pose.orientation.x = 0.0;
+    goal.target_pose.pose.orientation.y = 0.0;
+    goal.target_pose.pose.orientation.z = 0.0;
+    goal.target_pose.pose.orientation.w = 1.0;
 
     ROS_INFO_STREAM(" Transform: " << 
             
