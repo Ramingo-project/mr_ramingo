@@ -37,7 +37,7 @@ int main( int argc, char** argv ) {
 
 
 
-    while(!detected){
+    while(!detected && ros::ok()){
 
         // Setting target frame id and time in the goal action
         goal.target_pose.header.frame_id = "base_link";
@@ -67,7 +67,7 @@ int main( int argc, char** argv ) {
             
             ROS_INFO("Marker detected!");
             ros::Duration(3.0);
-            detected = true;
+            detected = true; 
         }
         catch(tf::TransformException ex){
             ROS_ERROR("%s",ex.what());
