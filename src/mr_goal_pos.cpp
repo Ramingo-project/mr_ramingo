@@ -53,6 +53,7 @@ int main( int argc, char** argv ) {
             cout<<"TRY BEGUN!"<<endl;
             listener.waitForTransform("base_link", "aruco_marker_frame", ros::Time(0), ros::Duration(1.0));
             listener.lookupTransform("base_link", "aruco_marker_frame", ros::Time(0), transform);
+            goal.target_pose.header.frame_id = "base_link";
             goal.target_pose.pose.position.x = 0.0;
             goal.target_pose.pose.position.y = 0.0;
             goal.target_pose.pose.position.z = 0.0;
@@ -79,7 +80,7 @@ int main( int argc, char** argv ) {
     }  
 
     ROS_INFO("research aruco_marker_frame");
-
+    /*
     listener.waitForTransform("base_link", "aruco_marker_frame", ros::Time(0), ros::Duration(1.0));
     listener.lookupTransform("base_link", "aruco_marker_frame", ros::Time(0), transform);
 
@@ -91,12 +92,12 @@ int main( int argc, char** argv ) {
 
     br.sendTransform(tf::StampedTransform(tf, ros::Time::now(), "aruco_marker_frame", "goal_frame"));
     
-
+*/
     // Retreive the marker position again and set the right goal position 
-    listener.waitForTransform("base_link", "goal_frame", ros::Time(0), ros::Duration(2.0));
-    listener.lookupTransform("base_link", "goal_frame", ros::Time(0), transform);
+    listener.waitForTransform("base_link", "aruco_marker_frame", ros::Time(0), ros::Duration(2.0));
+    listener.lookupTransform("base_link", "aruco_marker_frame", ros::Time(0), transform);
 
-
+    goal.target_pose.header.frame_id = "base_link";
     goal.target_pose.pose.position.x = transform.getOrigin().x() ;
     goal.target_pose.pose.position.y = transform.getOrigin().y() ;
     goal.target_pose.pose.position.z = 0.0;
