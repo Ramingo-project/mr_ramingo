@@ -3,7 +3,7 @@
 <robot name="mobile_robot" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!--Set False if in real mode-->
-  <xacro:arg name="MR_GAZEBO" default="True"/>
+  <xacro:arg name="MR_GAZEBO" default="False"/>
 
   <xacro:include filename="$(find mr_ramingo)/urdf/mr_base_macro.xacro" /> 
   <xacro:if value="$(arg MR_GAZEBO)" > 

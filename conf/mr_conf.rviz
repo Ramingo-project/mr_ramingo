@@ -30,7 +30,7 @@ Panels:
   - Class: rviz/Time
     Name: Time
     SyncMode: 0
-    SyncSource: LaserScan
+    SyncSource: Image
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -69,7 +69,9 @@ Visualization Manager:
           Value: true
         camera_link:
           Value: true
-        fix_camera_link:
+        gazebo_aruco_camera_link:
+          Value: true
+        gazebo_camera_link:
           Value: true
         laser:
           Value: true
@@ -78,6 +80,8 @@ Visualization Manager:
         map:
           Value: true
         mr_odom:
+          Value: true
+        real_camera_link:
           Value: true
         right_wheel_link:
           Value: true
@@ -93,7 +97,11 @@ Visualization Manager:
             base_footprint:
               base_link:
                 camera_link:
-                  fix_camera_link:
+                  gazebo_aruco_camera_link:
+                    {}
+                  gazebo_camera_link:
+                    {}
+                  real_camera_link:
                     {}
                 laser:
                   {}
@@ -127,7 +135,12 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        fix_camera_link:
+        gazebo_aruco_camera_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gazebo_camera_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -138,6 +151,11 @@ Visualization Manager:
           Show Trail: false
           Value: true
         left_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        real_camera_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -164,12 +182,14 @@ Visualization Manager:
       Unreliable: false
       Value: false
       Visibility:
+        "": true
         Grid: true
         Image: true
         LaserScan: true
         Map: true
         Path: true
         PointCloud2: true
+        Pose: true
         RobotModel: true
         TF: true
         Value: true
@@ -276,6 +296,41 @@ Visualization Manager:
       Topic: /move_base/NavfnROS/plan
       Unreliable: false
       Value: true
+    - Alpha: 1
+      Axes Length: 1
+      Axes Radius: 0.10000000149011612
+      Class: rviz/Pose
+      Color: 255; 25; 0
+      Enabled: true
+      Head Length: 0.30000001192092896
+      Head Radius: 0.10000000149011612
+      Name: Pose
+      Queue Size: 10
+      Shaft Length: 1
+      Shaft Radius: 0.05000000074505806
+      Shape: Arrow
+      Topic: /move_base/current_goal
+      Unreliable: false
+      Value: true
+    - Alpha: 0.699999988079071
+      Class: rviz/Map
+      Color Scheme: map
+      Draw Behind: false
+      Enabled: true
+      Name: Map
+      Topic: /move_base/local_costmap/costmap
+      Unreliable: false
+      Use Timestamp: false
+      Value: true
+    - Alpha: 1
+      Class: rviz/Polygon
+      Color: 25; 255; 0
+      Enabled: true
+      Name: Polygon
+      Queue Size: 10
+      Topic: /move_base/local_costmap/footprint
+      Unreliable: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -320,9 +375,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6153978109359741
+      Pitch: 0.5103979110717773
       Target Frame: <Fixed Frame>
-      Yaw: 2.5385725498199463
+      Yaw: 2.4785704612731934
     Saved: ~
 Window Geometry:
   Camera:
@@ -345,4 +400,4 @@ Window Geometry:
     collapsed: false
   Width: 1267
   X: 74
-  Y: 77
+  Y: 27

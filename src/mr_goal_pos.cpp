@@ -53,18 +53,18 @@ int main( int argc, char** argv ) {
             cout<<"TRY BEGUN!"<<endl;
             listener.waitForTransform("base_link", "aruco_marker_frame", ros::Time(0), ros::Duration(1.0));
             listener.lookupTransform("base_link", "aruco_marker_frame", ros::Time(0), transform);
-            goal.target_pose.header.frame_id = "base_link";
+            /*goal.target_pose.header.frame_id = "base_link";
             goal.target_pose.pose.position.x = 0.0;
             goal.target_pose.pose.position.y = 0.0;
             goal.target_pose.pose.position.z = 0.0;
             goal.target_pose.pose.orientation.x = 0.0;
             goal.target_pose.pose.orientation.y = 0.0;
             goal.target_pose.pose.orientation.z = 0.0;
-            goal.target_pose.pose.orientation.w = 1.0;
+            goal.target_pose.pose.orientation.w = 1.0;*/
             /*while(1){
                 br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "base_link", "aruco_marker_frame_fix"));
             }*/
-            
+            ac.cancelAllGoals();
             ROS_INFO("Marker detected!");
             ros::Duration(3.0);
             detected = true; 
@@ -98,8 +98,8 @@ int main( int argc, char** argv ) {
     listener.lookupTransform("base_link", "aruco_marker_frame", ros::Time(0), transform);
 
     goal.target_pose.header.frame_id = "base_link";
-    goal.target_pose.pose.position.x = transform.getOrigin().x() ;
-    goal.target_pose.pose.position.y = transform.getOrigin().y() ;
+    goal.target_pose.pose.position.x = transform.getOrigin().x() -0.3;
+    goal.target_pose.pose.position.y = transform.getOrigin().y() -0.3;
     goal.target_pose.pose.position.z = 0.0;
     goal.target_pose.pose.orientation.x = 0.0;
     goal.target_pose.pose.orientation.y = 0.0;

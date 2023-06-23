@@ -37,7 +37,8 @@
 		<origin xyz="0.11 0.0 0.0" rpy="0 1.57 0"/>
 	</joint>
 
-  <link name="gazebo_camera_link">
+
+  <link name="real_camera_link">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -47,26 +48,10 @@
     </visual>
   </link>
 
-	<joint name="gazebo_camera_joint" type="fixed">
+	<joint name="real_camera_joint" type="fixed">
 		<parent link="camera_link" />
-		<child link="gazebo_camera_link" />
-		<origin xyz="0 0.0 0.0" rpy="0 -1.57 0"/>
-	</joint>
-
-  <link name="gazebo_aruco_camera_link">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.01 0.02 0.02"/>
-      </geometry>
-      <material name="Red"/>
-    </visual>
-  </link>
-
-	<joint name="gazebo_aruco_camera_joint" type="fixed">
-		<parent link="camera_link" />
-		<child link="gazebo_aruco_camera_link" />
-		<origin xyz="0 0.0 0.0" rpy="0 0 -1.57"/>
+		<child link="real_camera_link" />
+		<origin xyz="0 0.0 0.0" rpy="0 0 1.57"/>
 	</joint>
 
   </xacro:macro>
