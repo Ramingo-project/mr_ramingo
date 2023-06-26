@@ -25,6 +25,7 @@
 		</include>
 
 		<include file="$(find mr_ramingo)/launch/move_base_ramingo.launch"/>
+		<param name="robot_description" command="$(find xacro)/xacro $(find mr_ramingo)/urdf/mr.xacro MR_GAZEBO:=False" />
 	</group>
 
 
@@ -42,9 +43,8 @@
 		</include>
 
 		<include file="$(find mr_ramingo)/launch/move_base_ramingo.launch"/>
+		<param name="robot_description" command="$(find xacro)/xacro $(find mr_ramingo)/urdf/mr.xacro MR_GAZEBO:=True" />
 	</group>
-
-	<param name="robot_description" command="$(find xacro)/xacro $(find mr_ramingo)/urdf/mr.xacro " />
 
 	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 	<node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />	
