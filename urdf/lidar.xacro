@@ -15,14 +15,14 @@
           <mesh filename="package://mr_ramingo/meshes/lidar.stl" scale="0.001 0.001 0.001 "/>
         </geometry>
         <material name="White"/>
-        <origin rpy="0 0 ${-M_PI_2}" xyz="0.0 0.0 -0.031"/>
+        <origin rpy="3.14 0 ${-M_PI_2}" xyz="0.0 0.0 -0.031"/>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0 " />
         <geometry>
           <cylinder length="0.04" radius="0.037" />
         </geometry>
-        <origin rpy="0 0 0" xyz="0.0 0.0 -0.031"/>
+        <origin rpy="3.14 0 0" xyz="0.0 0.0 -0.031"/>
       </collision> 
          
     </link>
@@ -30,7 +30,7 @@
     <joint name="laser_joint" type="fixed">
       <parent link="base_link"/>
       <child link="laser"/>
-      <origin rpy="3.14 0 3.14" xyz="0.0 0.0 0.151"/>
+      <origin rpy="3.14 0 3.14" xyz="0.0 0.0 0.095"/>
     </joint>
 
   </xacro:macro>

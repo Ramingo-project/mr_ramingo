@@ -38,7 +38,7 @@
 	</joint>
 
 
-  <link name="real_camera_link">
+  <link name="aruco_camera_link">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -48,9 +48,9 @@
     </visual>
   </link>
 
-	<joint name="real_camera_joint" type="fixed">
+	<joint name="aruco_camera_joint" type="fixed">
 		<parent link="camera_link" />
-		<child link="real_camera_link" />
+		<child link="aruco_camera_link" />
 		<origin xyz="0 0.0 0.0" rpy="0 0 1.57"/>
 	</joint>
 

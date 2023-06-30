@@ -15,7 +15,7 @@
 
 		<include file="$(find mr_ramingo)/launch/marker_mr.launch">
 			<arg name="eye" value="usb_cam" />
-			<arg name="camera_frame" value="real_camera_link" />
+			<arg name="camera_frame" value="aruco_camera_link" />
 		</include>
 
 		<include file="$(find mr_ramingo)/launch/lidar_mr.launch"/>

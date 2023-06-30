@@ -58,7 +58,7 @@
   <xacro:if value="${LIDAR}" > 
       <gazebo reference="base_link">
           <sensor type="ray" name="laser">
-          <pose>0 0 0.127 0 0 0</pose>  <!--Melania z = 0.02 -->
+          <pose>0 0 0.02 0 0 0</pose>  <!--Melania z = 0.02  default 0.127-->
           <visualize>true</visualize>
           <update_rate>40</update_rate>
           <ray>
