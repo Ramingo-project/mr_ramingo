@@ -3,7 +3,6 @@
 #include <actionlib/client/simple_action_client.h>
 #include <move_base_msgs/MoveBaseAction.h>
 #include <tf/transform_broadcaster.h>
-#include <sstream>
 #include <iostream>
 
 using namespace std;
