@@ -101,9 +101,9 @@ int main( int argc, char** argv ) {
     ac.waitForResult();
 
     if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
-        ROS_INFO("Ramingo, arrived in marker position");
+        ROS_INFO("Ramingo, arrived in marker position!");
     else
-        ROS_INFO("The base failed to move");
+        ROS_INFO("The base failed to move!");
 
     return 0;
 }
