@@ -7,8 +7,7 @@
 
 using namespace std;
 
-//Declaring a new SimpleActionClient with action of
-move_base_msgs::MoveBaseAction ac;
+//Declaring a new SimpleActionClient with action of move_base_msgs::MoveBaseAction 
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
 int main( int argc, char** argv ) {
